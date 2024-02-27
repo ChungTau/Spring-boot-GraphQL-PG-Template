@@ -1,0 +1,43 @@
+type User {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    email: String!
+    address: String
+    role: Role!
+    orders: [Order!]!
+    reviews: [Review!]!
+    events: [Event!]!
+    hostedEvents: [Event!]
+    cart: Cart
+    
+}
+extend type Query {
+    getUsers: [User]!
+    getUserById(id: String): User
+}
+extend type Mutation {
+    addUser(input: CreateUserInput!): User!
+    updateUser(input: UpdateUserInput!): User!
+    deleteUser(input: DeleteUserInput!): Boolean
+}
+
+input CreateUserInput {
+    firstName: String!
+    lastName: String!
+    email: String!
+    address: String
+    roleId: ID!
+}
+
+input UpdateUserInput {
+    id: ID!
+    firstName: String
+    lastName: String
+    email: String
+    address: String
+}
+
+input DeleteUserInput {
+    id: ID!
+}

@@ -1,0 +1,18 @@
+type Cart {
+  id: ID!
+  user: User!
+  cartItems: [CartItem!]!
+}
+
+extend type Query {
+  getCarts: [Cart]!
+  getCartById(id: ID!): Cart
+}
+
+extend type Mutation {
+  createCart(input: CreateCartInput!): Cart!
+}
+
+input CreateCartInput {
+  userId: ID!
+}
